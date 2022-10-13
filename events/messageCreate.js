@@ -79,13 +79,13 @@ if (!commandrunner.MessageCommandEnable) {
             }
             if (command) {
                 if (command.timeout) {
-                    if (timeout2.has(message.author.id)) return;
+                    if (timeout2.has(`${command.name}${message.author.id}`)) return;
                     var lo1 = 0;
                     if (timeout1.has(`${command.name}${message.author.id}`)) lo1 = math.subtract(timeout1.get(`${command.name}${message.author.id}`), Date.now())
                     const embedtimeout1 = new EmbedBuilder()
                     .setDescription(`You need to wait **${prettyms(lo1, { verbose: true })}**.`)
                     .setColor("Red");
-                    if (timeout1.has(`${command.name}${message.author.id}`)) return timeout2.set(message.author.id, "timeout2") && message.channel.send({ embeds: [embedtimeout1] }).then((msg) => {
+                    if (timeout1.has(`${command.name}${message.author.id}`)) return timeout2.set(`${command.name}${message.author.id}`, "timeout2") && message.channel.send({ embeds: [embedtimeout1] }).then((msg) => {
                         setTimeout(() => {
                             msg.delete().catch(err => {if (err) return})
                         }, math.subtract(timeout1.get(`${command.name}${message.author.id}`), Date.now()))
@@ -94,7 +94,7 @@ if (!commandrunner.MessageCommandEnable) {
                     timeout1.set(`${command.name}${message.author.id}`, math.add(Date.now(), command.timeout))
                     setTimeout(() => {
                         timeout1.delete(`${command.name}${message.author.id}`)
-                        timeout2.delete(message.author.id);
+                        timeout2.delete(`${command.name}${message.author.id}`);
                     }, command.timeout)
                 } else command.run(client, message, args);
             }
@@ -166,13 +166,13 @@ if (!commandrunner.MessageCommandEnable) {
             }
             if (command) {
                 if (command.timeout) {
-                    if (timeout2.has(message.author.id)) return;
+                    if (timeout2.has(`${command.name}${message.author.id}`)) return;
                     var lo1 = 0;
                     if (timeout1.has(`${command.name}${message.author.id}`)) lo1 = math.subtract(timeout1.get(`${command.name}${message.author.id}`), Date.now())
                     const embedtimeout1 = new EmbedBuilder()
                     .setDescription(`You need to wait **${prettyms(lo1, { verbose: true })}**.`)
                     .setColor("Red");
-                    if (timeout1.has(`${command.name}${message.author.id}`)) return timeout2.set(message.author.id, "timeout2") && message.channel.send({ embeds: [embedtimeout1] }).then((msg) => {
+                    if (timeout1.has(`${command.name}${message.author.id}`)) return timeout2.set(`${command.name}${message.author.id}`, "timeout2") && message.channel.send({ embeds: [embedtimeout1] }).then((msg) => {
                         setTimeout(() => {
                             msg.delete().catch(err => {if (err) return})
                         }, math.subtract(timeout1.get(`${command.name}${message.author.id}`), Date.now()))
@@ -181,7 +181,7 @@ if (!commandrunner.MessageCommandEnable) {
                     timeout1.set(`${command.name}${message.author.id}`, math.add(Date.now(), command.timeout))
                     setTimeout(() => {
                         timeout1.delete(`${command.name}${message.author.id}`)
-                        timeout2.delete(message.author.id);
+                        timeout2.delete(`${command.name}${message.author.id}`);
                     }, command.timeout)
                 } else command.run(client, message, args);
             }
