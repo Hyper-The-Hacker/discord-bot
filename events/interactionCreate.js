@@ -91,13 +91,13 @@ if (!commandrunner.SlashCommandEnable) {
             }
             if (cmd) {
                 if (cmd.timeout) {
-                    if (timeout2.has(interaction.member.id)) return interaction.deleteReply();
+                    if (timeout2.has(`${cmd.name}${interaction.member.id}`)) return interaction.deleteReply();
                     var lo1 = 0;
                     if (timeout1.has(`${cmd.name}${interaction.member.id}`)) lo1 = math.subtract(timeout1.get(`${cmd.name}${interaction.member.id}`), Date.now())
                     const embedtimeout1 = new EmbedBuilder()
                     .setDescription(`You need to wait **${prettyms(lo1, { verbose: true })}**.`)
                     .setColor("Red");
-                    if (timeout1.has(`${cmd.name}${interaction.member.id}`)) return timeout2.set(interaction.member.id, "timeout2") && interaction.editReply({ embeds: [embedtimeout1] }).then((i) => {
+                    if (timeout1.has(`${cmd.name}${interaction.member.id}`)) return timeout2.set(`${cmd.name}${interaction.member.id}`, "timeout2") && interaction.editReply({ embeds: [embedtimeout1] }).then((i) => {
                         setTimeout(() => {
                             i.delete().catch(err => {if (err) return})
                         }, math.subtract(timeout1.get(`${cmd.name}${interaction.member.id}`), Date.now()))
@@ -106,7 +106,7 @@ if (!commandrunner.SlashCommandEnable) {
                     timeout1.set(`${cmd.name}${interaction.member.id}`, math.add(Date.now(), cmd.timeout))
                     setTimeout(() => {
                         timeout1.delete(`${cmd.name}${interaction.member.id}`)
-                        timeout2.delete(interaction.member.id);
+                        timeout2.delete(`${cmd.name}${interaction.member.id}`);
                     }, cmd.timeout)
                 } else cmd.run(client, interaction, args);
             }
@@ -178,13 +178,13 @@ if (!commandrunner.SlashCommandEnable) {
             }
             if (command) {
                 if (command.timeout) {
-                    if (timeout2.has(interaction.member.id)) return interaction.deleteReply();
+                    if (timeout2.has(`${command.name}${interaction.member.id}`)) return interaction.deleteReply();
                     var lo1 = 0;
                     if (timeout1.has(`${command.name}${interaction.member.id}`)) lo1 = math.subtract(timeout1.get(`${command.name}${interaction.member.id}`), Date.now())
                     const embedtimeout1 = new EmbedBuilder()
                     .setDescription(`You need to wait **${prettyms(lo1, { verbose: true })}**.`)
                     .setColor("Red");
-                    if (timeout1.has(`${command.name}${interaction.member.id}`)) return timeout2.set(interaction.member.id, "timeout2") && interaction.editReply({ embeds: [embedtimeout1] }).then((i) => {
+                    if (timeout1.has(`${command.name}${interaction.member.id}`)) return timeout2.set(`${cmd.name}${interaction.member.id}`, "timeout2") && interaction.editReply({ embeds: [embedtimeout1] }).then((i) => {
                         setTimeout(() => {
                             i.delete().catch(err => {if (err) return})
                         }, math.subtract(timeout1.get(`${command.name}${interaction.member.id}`), Date.now()))
@@ -193,7 +193,7 @@ if (!commandrunner.SlashCommandEnable) {
                     timeout1.set(`${command.name}${interaction.member.id}`, math.add(Date.now(), command.timeout))
                     setTimeout(() => {
                         timeout1.delete(`${command.name}${interaction.member.id}`)
-                        timeout2.delete(interaction.member.id);
+                        timeout2.delete(`${command.name}${interaction.member.id}`);
                     }, command.timeout)
                 } else command.run(client, interaction);
             }
