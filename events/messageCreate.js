@@ -12,7 +12,7 @@ if (!commandrunner.MessageCommandEnable) {
     
     client.on("messageCreate",(message) => {    
         if (message.content.startsWith(prefixConfig.DefaultPrefix)) {
-            if (message.author.bot || !message.guild || message.content.toLowerCase().startsWith(prefixConfig.DefaultPrefix)) return;
+            if (message.author.bot || !message.guild || !message.content.toLowerCase().startsWith(prefixConfig.DefaultPrefix)) return;
             const [cmd, ...args] = message.content.slice(prefixConfig.DefaultPrefix.length).trim().split(/ +/g);
             const command = client.MessageCommands.get(cmd.toLowerCase()) || client.MessageCommands.find(c => c.aliases?.includes(cmd.toLowerCase()));
             if (!command) return;
