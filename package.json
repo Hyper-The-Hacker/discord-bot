@@ -12,15 +12,15 @@
     "djs"
   ],
   "author": "ttg_noob",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "console-colors.js": "^1.4.0",
     "discord-hybrid-sharding": "^1.7.4",
-    "discord.js": "^14.3.0",
-    "dotenv": "^16.0.2",
+    "discord.js": "^14.6.0",
+    "dotenv": "^16.0.3",
     "glob": "^8.0.3",
-    "mathjs": "^11.1.0",
-    "mongoose": "^6.5.4",
+    "mathjs": "^11.3.0",
+    "mongoose": "^6.6.5",
     "pretty-ms": "^7.0.1",
     "undici": "^5.10.0"
   }
