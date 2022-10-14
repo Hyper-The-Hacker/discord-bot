@@ -1,4 +1,4 @@
 {
     "MessageCommandEnable": true,
-    "SlashCommandEnable": true
+    "SlashCommandEnable": false
 }
