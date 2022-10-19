@@ -1,5 +1,6 @@
 const { Message, Client, EmbedBuilder } = require("discord.js");
 const prefix = require('../../json/prefix/PrefixList.json')
+const color = require('../../json/color/default.json');
 
 module.exports = {
     name: "say",
@@ -18,7 +19,7 @@ module.exports = {
       if (!args[0]) return message.channel.send({ content: `Please type something` })
         const sayembed = new EmbedBuilder()
         .setDescription(args.join(" "))
-        .setColor("Random")
+        .setColor(color.color)
         message.channel.send({ embeds: [sayembed] });
     },
 };
